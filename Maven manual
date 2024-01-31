@@ -1,0 +1,38 @@
+MANUAL DEPLOYMENT 
+------------------------------------
+
+MAVEN: 
+=======
+Maven is a build tool which creates an artifact of the code.
+Artifact means creation of the entire code in the form of executable file like .war .jar .ear.
+==> pom.xml file (project object model.xtensible markup language)
+==> maven is a life cycle process and it contains plugins in it.
+==> Maven is a procedural process; its not a scripted.
+
+Steps for manual deployment:
+==================================================================================
+
+step 1# setup EC2 instance
+
+step 2# in terminal we use all the below commands accordingly:
+        sudo su -
+        yum install git java-1.8.0 -openjdk -y maven tree
+
+ step 3# clone a git repository into this directory
+          git clone https://github.com/devopsbyraham/jenkins-java-project.git
+          cd jenkins-java-project.git
+
+step 4# follow the goal commands of maven to build test and deploy
+life cycle process of maven:{commands to be used in the terminal where the code is cloned}
+
+mvn compile         : it complies the source code
+mvn test            : it builds the compiled code into class files
+mvn package         : all the class files are converted to an artifact
+mvn install         : it copies artifact to the maven home directory (.m2)
+mvn clean package   : it performs all the above goals at a time
+
+------------------ deployment process is completed-------------------------------
+==================================================================================
+mvn clean           : it removes the target file created
+
+
