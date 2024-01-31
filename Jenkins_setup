@@ -1,0 +1,62 @@
+SETTING JENKINS MANUALLY:
+=================================================================================================================
+==================================================================================================================
+
+--> Create an instance in AWS
+--> Locate the key pair file and open gitbash here in this location.
+--> switch to root user from ec2-user 
+================== sudo su -
+--> Copy and paste the DNS file of jenkins in the terminal. 
+================== eg:)  ssh -i "jencatkey.pem" ec2-user@ec2-3-148-113-133.us-east-2.compute.amazonaws.com
+--> follow the steps from jenkins official website for the installation steps: (steps are below)
+===================================================================================================
+step #1 INSTALLING GIT, JAVA 1.8.0, MAVEN, TREE
+          yum install git java-1.8.0-openjdk maven tree -y
+
+step #2 GETTING THE REPO and the KEY (jenkins.io --> download  --> RedHat )
+           sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+           sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+step #3 DOWNLOAD JAVA11 & JENKINS
+          amazon-linux-extras install java-openjdk11 -y
+          yum install jenkins -y
+          update-alternatives --config java {this command is helpful to switch the java version from 1.8.0(mvn) to 11(jenkins)}
+
+step #4 RESTARTIG JENKINS (when we download service that will be in the stopped state)
+         systemctl enable jenkins(.service is optional after the word jenkins in these cases(enable,start,stop,status))
+         systemctl start jenkins
+         systemctl status jenkins
+=============================================================================================================
+
+--> Locate the PUBLIC IP ADDRESS from AWS instance created and paste it in google along with the port as 8080
+public ip address:8080 is the url for the jenkins home page.
+
+############################################################################################################################################################
+
+SETTING UP JENKINS AUTOMATICALLY
+=============================================================================================================
+--> create an aws instance and in the ADDITIONAL section if we drag down we can see USERDATA -OPTIONAL
+add the below code which helps to up the jenkins along with the instance.
+
+#!/bin/bash
+sudo yum update –y
+sudo wget -O /etc/yum.repos.d/jenkins.repo \ https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+sudo yum upgrade
+sudo dnf install java-17-amazon-corretto -y
+sudo yum install jenkins -y
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+systemctl status jenkins
+yum install git tree -y
+
+===============================================================================================================
+
+
+
+
+
+
+
+
+
