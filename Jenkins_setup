@@ -50,6 +50,9 @@ sudo systemctl start jenkins
 systemctl status jenkins
 yum install git tree -y
 
+
+cat /var/lib/jenkins/secrets/initalAdminPassword
+
 ===============================================================================================================
 
 
