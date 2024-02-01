@@ -1,0 +1,18 @@
+1. WHEN JENKINS SERVICE STOPPED LOADING:
+===========================================
+GOTO EC2 INSTANCE AND STOP THE INSTANCE AND START IT.
+
+2 things happens when we start and stop the instance.
+------------------------------------------
+  --> PUBLIC IP ADDRESS CHANGES                    :  IN THE URL CHANGE THE OLD IP WITH THE NEW IP
+  --> STATUS OF JENKINS SERVICE WILL BE STOPPED    :  IN GIT BASJ RUN --> systemctl enable jenkins  --> systemctl start jenkins
+IN THIS SCENARIO THE JOBS WILL STOP TO BUILD.
+
+IN ORDER TO OVERCOME THIS WE'LL USE ::
+                                    ## systemctl enable jenkins
+                                    ## chkconfig jenkins on
+
+===================================================================================================================================================
+
+2. ERROR OCCURED WITH THE WRONG VERSION USAGE:
+
